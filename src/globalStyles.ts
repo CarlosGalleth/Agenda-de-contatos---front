@@ -12,7 +12,6 @@ export const GlobalStyle = createGlobalStyle`
         --color-brand-2: #0d60b1;
         --color-brand-3: #fa96bf;
         --color-brand-4: #69798e;
-        --color-brand-5: #9cbdc7;
         --color-brand-6: #342c2d;
         --fixed-white: white;
         
