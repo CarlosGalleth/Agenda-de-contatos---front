@@ -5,10 +5,15 @@ import {
   UserInfoBox,
 } from "./dashboardStyled";
 import defaultUser from "../../assets/default-user.jpg";
+import { useState } from "react";
+import { UpdateModal } from "./updateModal";
 
 export const DashBoardPage = () => {
+  const [modal, setModal] = useState(false);
+
   return (
     <DashboardBackgroundStyled>
+      <>{modal && <UpdateModal setModal={setModal} />}</>
       <main className="container">
         <UserInfoBox>
           <img src={defaultUser} alt="" />
@@ -16,22 +21,22 @@ export const DashBoardPage = () => {
             <div className="userInfo">
               <div>
                 <p>Nome: </p>
-                <span>Editar nome</span>
               </div>
               <div>
                 <p>Telefone: </p>
-                <span>Editar telefone</span>
               </div>
             </div>
             <div className="userInfo">
               <div>
                 <p>Email: </p>
-                <span>Editar email</span>
               </div>
               <div>
                 <p>Senha: ****</p>
-                <span>Editar senha</span>
               </div>
+            </div>
+            <div className="anchorBox">
+              <span onClick={() => setModal(true)}>Editar perfil</span>
+              <span>Deslogar</span>
             </div>
           </div>
         </UserInfoBox>

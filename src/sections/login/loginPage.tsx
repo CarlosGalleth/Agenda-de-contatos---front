@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { CredentialsBackground } from "./login&registerPageStyled";
+import { StyledFormContainer } from "../../globalComponents/styledFormContainer";
 
 export const LoginPage = () => {
   return (
     <CredentialsBackground>
-      <div className="credentialsBox">
+      <StyledFormContainer>
         <div className="credentialsBox-top">
           <h1>Login</h1>
           <p>
@@ -12,23 +13,15 @@ export const LoginPage = () => {
           </p>
         </div>
         <div>
-          <label htmlFor="">Nome</label>
-          <input type="text" placeholder="Digite seu nome..." />
-        </div>
-        <div>
           <label htmlFor="">Email</label>
           <input type="text" placeholder="Digite seu email..." />
         </div>
         <div>
           <label htmlFor="">Senha</label>
-          <input type="text" placeholder="Digite sua Senha..." />
+          <input type="text" placeholder="Digite sua senha..." />
         </div>
-        <div>
-          <label htmlFor="">Telefone</label>
-          <input type="text" placeholder="Digite seu telefone..." />
-        </div>
-        <button>Cadastrar</button>
-      </div>
+        <button type="submit">Login</button>
+      </StyledFormContainer>
     </CredentialsBackground>
   );
 };

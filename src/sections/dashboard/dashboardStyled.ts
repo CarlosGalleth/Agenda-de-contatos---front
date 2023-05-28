@@ -33,7 +33,6 @@ export const UserInfoBox = styled.div`
   padding: 5px;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   img {
@@ -51,7 +50,7 @@ export const UserInfoBox = styled.div`
     .userInfo {
       display: flex;
       flex-direction: column;
-      gap: var(--gap-9);
+      justify-content: space-between;
 
       div {
         display: flex;
@@ -74,6 +73,22 @@ export const UserInfoBox = styled.div`
           text-decoration: underline;
           white-space: nowrap;
         }
+      }
+    }
+
+    .anchorBox {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--gap-8);
+
+      width: 100%;
+
+      span {
+        cursor: pointer;
+        text-decoration: underline;
+        color: var(--color-brand-3);
+        font-weight: 600;
       }
     }
   }
@@ -146,4 +161,15 @@ export const UserContacts = styled.ul`
       }
     }
   }
+`;
+
+export const UpdateModalStyled = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #00000030;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -1,16 +1,13 @@
 import { StyledFormContainer } from "../../globalComponents/styledFormContainer";
-import { CredentialsBackground } from "../login/login&registerPageStyled";
-import { Link } from "react-router-dom";
+import { UpdateModalStyled } from "./dashboardStyled";
 
-export const RegisterPage = () => {
+export const UpdateModal = ({ setModal }: any) => {
   return (
-    <CredentialsBackground>
+    <UpdateModalStyled>
       <StyledFormContainer>
-        <div className="credentialsBox-top">
-          <h1>Cadastrar</h1>
-          <p>
-            Já possui uma conta? Faça <Link to={"/"}>Login</Link>
-          </p>
+        <div className="modalHeader">
+          <h2>Atualizar Perfil</h2>
+          <button onClick={() => setModal(false)}>X</button>
         </div>
         <div>
           <label htmlFor="">Nome</label>
@@ -28,8 +25,10 @@ export const RegisterPage = () => {
           <label htmlFor="">Telefone</label>
           <input type="text" placeholder="Digite seu telefone..." />
         </div>
-        <button>Cadastrar</button>
+        <div className="confirmUpdate">
+          <button onClick={() => setModal(false)}>Atualizar</button>
+        </div>
       </StyledFormContainer>
-    </CredentialsBackground>
+    </UpdateModalStyled>
   );
 };
