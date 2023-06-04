@@ -62,6 +62,11 @@ export const StyledFormContainer = styled.form`
       border: 1px solid var(--color-brand-4);
       color: var(--color-brand-6);
     }
+
+    p {
+      font-size: 14px;
+      color: #ff7272;
+    }
   }
 
   button {

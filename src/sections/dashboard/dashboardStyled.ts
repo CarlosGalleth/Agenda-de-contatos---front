@@ -99,15 +99,24 @@ export const ContactsTitleBar = styled.div`
   border-radius: var(--radius-1);
   background-color: var(--fixed-white);
   box-shadow: 0px 0px 10px var(--color-brand-3);
+  padding: 0 25px;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   h1 {
     font-size: 22px;
     font-weight: 600;
     color: var(--color-brand-4);
+  }
+
+  span {
+    cursor: pointer;
+    color: var(--color-brand-3);
+    text-decoration: underline;
+    font-weight: 600;
+    white-space: nowrap;
   }
 `;
 
@@ -124,18 +133,25 @@ export const UserContacts = styled.ul`
   box-shadow: 0px 0px 10px var(--color-brand-3);
   padding: 10px;
   overflow-y: scroll;
+`;
 
-  li {
-    width: 49%;
-    height: 80px;
+export const ContactStyled = styled.li`
+  width: 49%;
 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  border-radius: var(--radius-1);
+  box-shadow: 0px 0px 2.5px var(--color-brand-4);
+  padding: 10px;
+
+  display: flex;
+  gap: var(--gap-10);
+
+  .contact {
     display: flex;
     align-items: center;
-    border-radius: var(--radius-1);
-    box-shadow: 0px 0px 2.5px var(--color-brand-4);
-    padding: 5px;
-
-    display: flex;
     gap: var(--gap-10);
 
     img {
@@ -144,7 +160,7 @@ export const UserContacts = styled.ul`
       border-radius: var(--radius-1);
     }
 
-    div {
+    .contactInfo {
       width: 80%;
       padding: 5px;
       display: flex;
@@ -161,6 +177,30 @@ export const UserContacts = styled.ul`
       }
     }
   }
+
+  .buttonContainer {
+    width: 100%;
+    display: flex;
+    gap: var(--gap-10);
+
+    button {
+      width: 100%;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-3);
+      color: var(--fixed-white);
+      padding: 3px;
+    }
+
+    .updateContact {
+      background-color: var(--color-brand-3);
+    }
+
+    .deleteContact {
+      background-color: #ff7272;
+    }
+  }
 `;
 
 export const UpdateModalStyled = styled.div`
@@ -172,4 +212,10 @@ export const UpdateModalStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .deleteAccount {
+    button {
+      background-color: #ff7272;
+    }
+  }
 `;

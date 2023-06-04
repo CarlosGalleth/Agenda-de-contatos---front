@@ -1,73 +1,52 @@
 import { useForm } from "react-hook-form";
-import { formSchema } from "../../sections/register/yupValidation";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledFormContainer } from "../../globalComponents/styledFormContainer";
 import { UpdateModalStyled } from "./dashboardStyled";
-import { iRegisterFormData } from "../../types/types";
-import { api } from "../../services/services";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formSchema } from "./yupValidation";
+import { iContactRegisterData } from "../../types/types";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { api } from "../../services/services";
 
-export const UpdateModal = ({ setModal, user, userId }: any) => {
+export const UpdateContactModal = ({ contact, setModalUpdate }: any) => {
   const { token, navigate }: any = useContext(UserContext);
-  const acUser = {
-    name: user.name,
-    email: user.email,
-    phone: user.phone,
-  };
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<iRegisterFormData>({
+  } = useForm<iContactRegisterData>({
     mode: "onChange",
     resolver: yupResolver(formSchema()),
   });
-  const getData = (data: iRegisterFormData) => {
-    const user = {
+  const getData = (data: iContactRegisterData) => {
+    const newContact = {
       name: data.name,
       email: data.email,
-      password: data?.password,
       phone: data.phone,
     };
     async function fetchData() {
-      await api.patch(`users/${userId}`, user, {
+      await api.patch(`contacts/${contact.id}`, newContact, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      setModal(false);
+      setModalUpdate(false);
     }
     fetchData();
   };
-
-  const handleDelete = () => {
-    async function deleteAccount() {
-      await api.delete(`users/${userId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setModal(false);
-      navigate("/");
-    }
-    deleteAccount();
-  };
-
   return (
     <UpdateModalStyled>
       <StyledFormContainer onSubmit={handleSubmit(getData)}>
         <div className="modalHeader">
-          <h2>Atualizar Perfil</h2>
-          <button onClick={() => setModal(false)}>X</button>
+          <h2>Atualizar Contato</h2>
+          <button onClick={() => setModalUpdate(false)}>X</button>
         </div>
         <div>
           <label htmlFor="">Nome</label>
           <input
             type="text"
             placeholder="Digite seu nome..."
-            defaultValue={acUser.name}
+            defaultValue={contact.name}
             {...register("name")}
           />
           {errors.name?.message && <p>{errors.name.message}</p>}
@@ -77,35 +56,23 @@ export const UpdateModal = ({ setModal, user, userId }: any) => {
           <input
             type="text"
             placeholder="Digite seu email..."
-            defaultValue={acUser.email}
+            defaultValue={contact.email}
             {...register("email")}
           />
           {errors.email?.message && <p>{errors.email.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="">Senha</label>
-          <input
-            type="password"
-            placeholder="Digite sua Senha..."
-            {...register("password")}
-          />
-          {errors.password?.message && <p>{errors.password.message}</p>}
         </div>
         <div>
           <label htmlFor="">Telefone</label>
           <input
             type="text"
             placeholder="Digite seu telefone..."
-            defaultValue={acUser.phone}
+            defaultValue={contact.phone}
             {...register("phone")}
           />
           {errors.phone?.message && <p>{errors.phone.message}</p>}
         </div>
         <div className="confirmUpdate">
           <button type="submit">Atualizar</button>
-        </div>
-        <div className="deleteAccount">
-          <button onClick={() => handleDelete()}>Excluir Conta</button>
         </div>
       </StyledFormContainer>
     </UpdateModalStyled>
